@@ -1,0 +1,31 @@
+{
+  "name": "Easy Chess Room",
+  "short_name": "Chess Room",
+  "description": "Scacchiera web installabile per principianti, gioco locale, aiuto mosse e stanza peer-to-peer.",
+  "start_url": "/easy-chess-room/",
+  "scope": "/easy-chess-room/",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#0f172a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

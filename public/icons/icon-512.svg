@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Easy Chess Room">
+  <rect width="512" height="512" rx="96" fill="#0f172a"/>
+  <rect x="72" y="72" width="368" height="368" rx="44" fill="#f8fafc"/>
+  <g>
+    <rect x="72" y="72" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="256" y="72" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="164" y="164" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="348" y="164" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="72" y="256" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="256" y="256" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="164" y="348" width="92" height="92" fill="#e2e8f0"/>
+    <rect x="348" y="348" width="92" height="92" fill="#e2e8f0"/>
+  </g>
+  <path d="M256 132c-27 0-49 22-49 49 0 17 9 32 22 41-36 18-60 63-60 130h174c0-67-24-112-60-130 13-9 22-24 22-41 0-27-22-49-49-49z" fill="#0f172a"/>
+  <rect x="152" y="350" width="208" height="40" rx="20" fill="#0f172a"/>
+</svg>

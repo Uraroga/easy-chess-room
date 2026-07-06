@@ -1,0 +1,5 @@
+{
+  "name": "Easy Chess Room",
+  "description": "An installable chess room for local play, beginner move help, FEN study, and peer-to-peer rooms.",
+  "requestFramePermissions": []
+}

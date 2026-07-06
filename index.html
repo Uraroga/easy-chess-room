@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Easy Chess Room: scacchiera web installabile per principianti, gioco locale, aiuto mosse e stanza peer-to-peer." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="application-name" content="Easy Chess Room" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Easy Chess" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="%BASE_URL%manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="%BASE_URL%icons/icon-192.svg" />
+    <title>Easy Chess Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Prevent text selection during drag and drop */
+      .no-select {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+    </style>
+</head>
+  <body class="bg-slate-100 text-slate-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
