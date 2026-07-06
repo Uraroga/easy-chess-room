@@ -65,13 +65,56 @@ Quando è attiva, selezionando un pezzo del giocatore di turno vengono mostrate 
 
 Questa funzione non è un motore scacchistico, non analizza la posizione e non suggerisce la mossa migliore. Mostra solo le mosse consentite dalle regole, calcolate da `chess.js`.
 
-## Modalità stanza peer-to-peer
+## Come giocare online con le stanze
 
 La modalità stanza peer-to-peer permette a due giocatori di aprire la stessa app, entrare nella stessa stanza e giocare online in modo sperimentale.
 
-Un giocatore può scegliere Bianco, un altro può scegliere Nero. Eventuali altri utenti collegati restano Spettatori, se i due colori sono già occupati. Lo Spettatore può vedere la partita ma non può muovere.
+Per giocare online:
 
-Dopo ogni mossa valida, la nuova posizione viene sincronizzata inviando la FEN corrente agli altri peer. La comunicazione usa Trystero e WebRTC. Non è presente un backend applicativo dedicato, quindi la connessione può dipendere da browser, modem, firewall, NAT e rete mobile.
+1. Entrambi i giocatori devono aprire lo stesso link pubblico del gioco:
+
+   ```text
+   https://uraroga.github.io/easy-chess-room/
+   ```
+
+2. Entrambi devono scrivere lo stesso identico nome stanza.
+3. Un esempio di nome stanza è `stanza_sergio`.
+4. Il primo giocatore entra nella stanza e sceglie Bianco.
+5. Il secondo giocatore entra nella stessa stanza e sceglie Nero.
+6. Quando il Bianco muove, la scacchiera del Nero si aggiorna.
+7. Quando il Nero muove, la scacchiera del Bianco si aggiorna.
+
+La sincronizzazione avviene tramite FEN. Non serve creare un account e non serve un backend dedicato per gestire la partita. La connessione può comunque dipendere da browser, modem, firewall, NAT e rete mobile.
+
+### Esempio pratico con PC e telefono
+
+- Sul PC apri `https://uraroga.github.io/easy-chess-room/`.
+- Nel campo stanza scrivi `stanza_sergio`.
+- Premi `Entra`.
+- Seleziona `Gioca come Bianco`.
+- Sul telefono apri lo stesso link.
+- Nel campo stanza scrivi ancora `stanza_sergio`.
+- Premi `Entra`.
+- Seleziona `Gioca come Nero`.
+- Ora la partita può iniziare.
+- Le mosse vengono sincronizzate tra i due dispositivi.
+
+Nota importante: il nome stanza deve essere uguale su entrambi i dispositivi. Se un giocatore scrive `stanza_sergio` e l'altro scrive `stanza-sergio`, entrano in due stanze diverse e non si vedono.
+
+### Bianco, Nero e spettatore
+
+Il Bianco muove per primo. Il Nero risponde.
+
+Se entrambi i colori sono occupati, un altro utente può eventualmente restare spettatore, se supportato dall'interfaccia. Chi è spettatore può guardare ma non deve muovere.
+
+### Problemi comuni
+
+- Se i due dispositivi non si vedono, controlla che il nome stanza sia identico.
+- Controlla che entrambi stiano usando lo stesso link pubblico dell'app.
+- Prova ad aggiornare la pagina.
+- Prova con una stanza dal nome semplice, senza spazi.
+- Su alcune reti mobili, reti aziendali, modem o firewall restrittivi la connessione peer-to-peer potrebbe non funzionare.
+- La modalità è sperimentale e non va considerata una piattaforma online professionale.
 
 ## FEN, cronologia e salvataggio
 
