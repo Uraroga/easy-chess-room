@@ -85,54 +85,56 @@ const App: React.FC = () => {
                </div>
              </div>
              
-             <div className="flex w-full flex-wrap gap-2 md:w-auto md:justify-end">
-                <button 
-                  onClick={() => setIsHelpOpen(true)}
-                  className="flex min-h-10 items-center gap-2 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-200 hover:bg-slate-100"
-                  title="Come funziona"
-                >
-                  <CircleHelp size={18} />
-                  <span>Guida</span>
-                </button>
-                <div className="mx-1 hidden h-8 w-px bg-slate-200 md:block"></div>
-                <button 
-                  onClick={toggleOrientation}
-                  className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
-                  title="Ruota scacchiera"
-                >
-                  <ArrowUpDown size={20} />
-                </button>
-                <button
-                  onClick={toggleMoveHelp}
-                  className={`flex min-h-10 items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
-                    showMoveHelp
-                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border-transparent hover:border-slate-200'
-                  }`}
-                  title={showMoveHelp ? 'Disattiva aiuto mosse' : 'Attiva aiuto mosse'}
-                  aria-pressed={showMoveHelp}
-                >
-                  <Lightbulb size={18} />
-                  <span className="hidden sm:inline">Aiuto mosse</span>
-                  <span className="text-[10px] uppercase tracking-wide">{showMoveHelp ? 'On' : 'Off'}</span>
-                </button>
-                <button 
-                  onClick={undoMove}
-                  className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
-                  title="Annulla mossa"
-                >
-                  <RotateCcw size={20} />
-                </button>
-                <button
-                  onClick={clearSavedGame}
-                  className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-700"
-                  title="Cancella salvataggio locale e nuova partita"
-                >
-                  <Trash2 size={20} />
-                </button>
+             <div className="flex w-full min-w-0 flex-col gap-2 md:w-auto md:flex-row md:flex-wrap md:items-center md:justify-end">
+                <div className="flex min-w-0 flex-wrap gap-2">
+                  <button 
+                    onClick={() => setIsHelpOpen(true)}
+                    className="flex min-h-10 items-center gap-2 rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-200 hover:bg-slate-100"
+                    title="Come funziona"
+                  >
+                    <CircleHelp size={18} />
+                    <span>Guida</span>
+                  </button>
+                  <div className="mx-1 hidden h-8 w-px bg-slate-200 md:block"></div>
+                  <button 
+                    onClick={toggleOrientation}
+                    className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                    title="Ruota scacchiera"
+                  >
+                    <ArrowUpDown size={20} />
+                  </button>
+                  <button
+                    onClick={toggleMoveHelp}
+                    className={`flex min-h-10 items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
+                      showMoveHelp
+                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border-transparent hover:border-slate-200'
+                    }`}
+                    title={showMoveHelp ? 'Disattiva aiuto mosse' : 'Attiva aiuto mosse'}
+                    aria-pressed={showMoveHelp}
+                  >
+                    <Lightbulb size={18} />
+                    <span className="hidden sm:inline">Aiuto mosse</span>
+                    <span className="text-[10px] uppercase tracking-wide">{showMoveHelp ? 'On' : 'Off'}</span>
+                  </button>
+                  <button 
+                    onClick={undoMove}
+                    className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                    title="Annulla mossa"
+                  >
+                    <RotateCcw size={20} />
+                  </button>
+                  <button
+                    onClick={clearSavedGame}
+                    className="flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-700"
+                    title="Cancella salvataggio locale e nuova partita"
+                  >
+                    <Trash2 size={20} />
+                  </button>
+                </div>
                 <button 
                   onClick={resetGame}
-                  className="min-h-10 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 active:scale-95"
+                  className="min-h-11 w-full rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 active:scale-95 md:min-h-10 md:w-auto"
                 >
                   Nuova partita
                 </button>
