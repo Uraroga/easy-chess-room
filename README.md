@@ -2,6 +2,24 @@
 
 Easy Chess Room è una scacchiera web installabile realizzata con React, TypeScript, Vite e chess.js. Il repository tecnico può chiamarsi `easy-chess-room`.
 
+## Gioca dal browser
+
+Apri Easy Chess Room qui:
+
+```text
+https://uraroga.github.io/easy-chess-room/
+```
+
+Questo è il link della versione pubblicata con GitHub Pages. Da telefono o computer, usa questo indirizzo per provare il gioco nel browser.
+
+Il repository GitHub contiene invece il codice sorgente del progetto:
+
+```text
+https://github.com/Uraroga/easy-chess-room
+```
+
+Il repository serve per scaricare, studiare, modificare o contribuire al codice.
+
 Questa versione è pensata per principianti, gioco locale nel browser, aiuto mosse e modalità stanza peer-to-peer. Il vecchio progetto `React-Offline-Chess-v1.6` rimane separato e non deve essere modificato da questa repository.
 
 La modalità locale funziona senza database, login o account utente. La partita viene gestita nel browser e le regole degli scacchi sono validate da `chess.js`. La modalità stanza peer-to-peer è sperimentale, usa Trystero e WebRTC, e sincronizza la posizione tramite FEN.
@@ -74,7 +92,7 @@ Il progetto include i file minimi per essere installabile come PWA:
 - icone SVG provvisorie in `public/icons/`;
 - registrazione del service worker nella build di produzione.
 
-Quando l'app è pubblicata su un indirizzo HTTPS, alcuni browser possono mostrare il pulsante Installa app. Su telefono può comparire la voce Aggiungi alla schermata Home. Dopo l'installazione, l'app appare come icona e si apre in una finestra simile a un'app nativa.
+Dopo aver aperto il link pubblico dal browser, se il dispositivo lo consente, è possibile installare l'app o aggiungerla alla schermata iniziale. Alcuni browser possono mostrare il pulsante Installa app. Su telefono può comparire la voce Aggiungi alla schermata Home.
 
 Il supporto all'installazione dipende dal browser e dal sistema operativo. Le icone incluse sono semplici e provvisorie; possono essere sostituite mantenendo gli stessi percorsi o aggiornando il manifest.
 
@@ -136,19 +154,25 @@ Il risultato viene generato nella cartella `dist`.
 
 ## Pubblicazione con GitHub Pages
 
+Il gioco pubblicato con GitHub Pages si apre da:
+
+```text
+https://uraroga.github.io/easy-chess-room/
+```
+
+Il repository con il codice sorgente è:
+
+```text
+https://github.com/Uraroga/easy-chess-room
+```
+
 Il progetto può essere compilato con `npm run build` e pubblicato come sito statico. Per GitHub Pages, la configurazione Vite usa in build:
 
 ```text
 base: '/easy-chess-room/'
 ```
 
-Se pubblicato con GitHub Pages, il progetto potrà essere raggiungibile a un indirizzo simile a:
-
-```text
-https://uraroga.github.io/easy-chess-room/
-```
-
-Questa repository non configura automaticamente il deploy e questa modifica non aggiunge una GitHub Action. Una possibile procedura manuale o automatizzata consiste nel pubblicare la cartella `dist` generata da `npm run build` tramite GitHub Pages.
+Questa repository non modifica automaticamente il deploy e non aggiunge una GitHub Action. Una possibile procedura manuale o automatizzata consiste nel pubblicare la cartella `dist` generata da `npm run build` tramite GitHub Pages.
 
 Altri servizi adatti includono Vercel, Netlify o hosting statici simili. In quel caso potrebbe essere necessario adattare la base Vite se l'app non viene servita sotto `/easy-chess-room/`.
 
