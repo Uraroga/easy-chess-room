@@ -118,7 +118,7 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({ game, fen, onMove, lastM
   }
 
   return (
-    <div className={`select-none touch-none aspect-square w-full max-w-[600px] mx-auto shadow-xl rounded-lg overflow-hidden border-4 border-slate-700 ${isGameOver ? 'opacity-90 grayscale-[20%]' : ''}`}>
+    <div className={`mx-auto aspect-square w-full max-w-[min(600px,calc(100vw-1rem))] select-none touch-none overflow-hidden rounded-lg border-2 border-slate-700 shadow-xl sm:border-4 ${isGameOver ? 'opacity-90 grayscale-[20%]' : ''}`}>
       <div className="grid grid-cols-8 grid-rows-8 h-full">
         {ranks.map((rank, rIndex) => 
           files.map((file, fIndex) => {
@@ -156,22 +156,22 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({ game, fen, onMove, lastM
               >
                 {/* Coordinates (optional, only show on edges) */}
                 {fIndex === 0 && (
-                   <span className={`absolute top-0.5 left-1 text-[10px] font-bold ${isLight ? 'text-[#779556]' : 'text-[#ebecd0]'}`}>
+                   <span className={`absolute left-0.5 top-0.5 text-[8px] font-bold sm:left-1 sm:text-[10px] ${isLight ? 'text-[#779556]' : 'text-[#ebecd0]'}`}>
                      {rank}
                    </span>
                 )}
                 {rIndex === 7 && (
-                   <span className={`absolute bottom-0.5 right-1 text-[10px] font-bold ${isLight ? 'text-[#779556]' : 'text-[#ebecd0]'}`}>
+                   <span className={`absolute bottom-0.5 right-0.5 text-[8px] font-bold sm:right-1 sm:text-[10px] ${isLight ? 'text-[#779556]' : 'text-[#ebecd0]'}`}>
                      {file}
                    </span>
                 )}
 
                 {/* Legal move indicators, visible only when move help is enabled. */}
                 {showMoveHelp && isPossibleMove && !piece && !isGameOver && (
-                  <div className="absolute w-3 h-3 rounded-full bg-slate-900/25 shadow-sm pointer-events-none" />
+                  <div className="pointer-events-none absolute h-2.5 w-2.5 rounded-full bg-slate-900/25 shadow-sm sm:h-3 sm:w-3" />
                 )}
                 {showMoveHelp && isPossibleMove && piece && !isGameOver && (
-                   <div className="absolute inset-[10%] rounded-full border-[5px] border-slate-900/20 shadow-inner pointer-events-none" />
+                   <div className="pointer-events-none absolute inset-[10%] rounded-full border-4 border-slate-900/20 shadow-inner sm:border-[5px]" />
                 )}
 
                 {/* The Piece */}

@@ -7,23 +7,23 @@ interface HelpModalProps {
 
 export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center animate-fadeIn p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full flex flex-col max-h-[90vh]">
-        <div className="flex justify-between items-center p-5 border-b border-slate-100">
-          <h2 className="text-xl font-bold text-slate-800">Guida e funzionamento</h2>
+    <div className="fixed inset-0 z-[60] flex animate-fadeIn items-center justify-center bg-black/60 p-2 backdrop-blur-sm sm:p-4">
+      <div className="flex max-h-[calc(100dvh-1rem)] w-full max-w-2xl flex-col rounded-2xl bg-white shadow-2xl sm:max-h-[90vh]">
+        <div className="flex shrink-0 items-center justify-between gap-3 border-b border-slate-100 p-4 sm:p-5">
+          <h2 className="text-lg font-bold text-slate-800 sm:text-xl">Guida e funzionamento</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-500 hover:text-slate-800"
+            className="flex min-h-10 min-w-10 items-center justify-center rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800"
             title="Chiudi guida"
           >
             <X size={24} />
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto space-y-7 text-slate-600 leading-relaxed">
+        <div className="space-y-6 overflow-y-auto p-4 text-sm leading-relaxed text-slate-600 sm:space-y-7 sm:p-6 sm:text-base">
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <WifiOff className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <WifiOff className="shrink-0 text-blue-600" size={20} />
               Repository e avvio
             </h3>
             <p>
@@ -35,8 +35,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Download className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Download className="shrink-0 text-blue-600" size={20} />
               App installabile
             </h3>
             <p>
@@ -47,8 +47,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Move className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Move className="shrink-0 text-blue-600" size={20} />
               Mosse e rotazione
             </h3>
             <p>
@@ -58,8 +58,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Lightbulb className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Lightbulb className="shrink-0 text-blue-600" size={20} />
               Aiuto mosse
             </h3>
             <p>
@@ -71,8 +71,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <FileText className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <FileText className="shrink-0 text-blue-600" size={20} />
               FEN e cronologia
             </h3>
             <p>
@@ -83,8 +83,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Save className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Save className="shrink-0 text-blue-600" size={20} />
               Salvataggio locale
             </h3>
             <p>
@@ -96,8 +96,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Radio className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Radio className="shrink-0 text-blue-600" size={20} />
               Modalità stanza peer-to-peer
             </h3>
             <p>
@@ -111,8 +111,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
 
           <section>
-            <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-2">
-              <Download className="text-blue-600" size={20} />
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-slate-800 sm:text-lg">
+              <Download className="shrink-0 text-blue-600" size={20} />
               Esportazione
             </h3>
             <p>
@@ -121,9 +121,9 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
             </p>
           </section>
 
-          <section className="bg-amber-50 border border-amber-200 p-4 rounded-xl">
-            <h3 className="flex items-center gap-2 text-lg font-bold text-amber-900 mb-2">
-              <AlertTriangle className="text-amber-700" size={20} />
+          <section className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-amber-900 sm:text-lg">
+              <AlertTriangle className="shrink-0 text-amber-700" size={20} />
               Limiti attuali
             </h3>
             <p>
@@ -134,10 +134,10 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
           </section>
         </div>
 
-        <div className="p-5 border-t border-slate-100 flex justify-end">
+        <div className="flex shrink-0 justify-end border-t border-slate-100 p-4 sm:p-5">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg transition-colors"
+            className="min-h-10 rounded-lg bg-slate-900 px-6 py-2.5 font-semibold text-white transition-colors hover:bg-slate-800"
           >
             Chiudi
           </button>

@@ -73,7 +73,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ gameState, onCopy, copiedT
   const CopyButton = ({ text, type, label }: { text: string, type: string, label: string }) => (
     <button
       onClick={() => onCopy(text, type)}
-      className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors"
+      className="flex min-h-9 items-center justify-center gap-2 rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50"
       title={`Copia ${label}`}
     >
       {copiedType === type ? <ClipboardCheck size={14} className="text-green-600" /> : <Copy size={14} />}
@@ -82,41 +82,41 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ gameState, onCopy, copiedT
   );
 
   return (
-    <div className="flex flex-col gap-4 w-full lg:w-80 h-full">
+    <div className="flex h-full w-full min-w-0 flex-col gap-4">
       {/* Game Status */}
       <div className={`p-4 rounded-xl border-l-4 shadow-sm ${statusColor}`}>
-        <h2 className="text-lg font-bold">{statusText}</h2>
+        <h2 className="text-base font-bold sm:text-lg">{statusText}</h2>
       </div>
 
       {/* History */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 flex-1 flex flex-col min-h-[250px] overflow-hidden">
-        <div className="p-3 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+      <div className="flex min-h-[220px] min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:min-h-[250px]">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 bg-slate-50 p-3">
           <h3 className="font-semibold text-slate-700">Cronologia mosse</h3>
           <div className="flex gap-2">
             <CopyButton text={history.join(" ")} type="SAN" label="SAN" />
             <CopyButton text={uciHistory.join(" ")} type="UCI" label="UCI" />
           </div>
         </div>
-        <div className="p-0 flex-1 overflow-y-auto max-h-[300px]">
+        <div className="max-h-[260px] flex-1 overflow-y-auto p-0 sm:max-h-[300px]">
            {history.length === 0 ? (
              <div className="flex items-center justify-center h-full text-slate-400 italic text-sm">
                Nessuna mossa
              </div>
            ) : (
-            <table className="w-full text-sm text-left">
+            <table className="w-full table-fixed text-left text-sm">
               <thead className="text-xs text-slate-500 uppercase bg-slate-50 sticky top-0">
                 <tr>
-                  <th className="px-4 py-2 w-16">#</th>
-                  <th className="px-4 py-2">Bianco</th>
-                  <th className="px-4 py-2">Nero</th>
+                  <th className="w-12 px-3 py-2 sm:w-16 sm:px-4">#</th>
+                  <th className="px-3 py-2 sm:px-4">Bianco</th>
+                  <th className="px-3 py-2 sm:px-4">Nero</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {Array.from({ length: Math.ceil(history.length / 2) }).map((_, i) => (
                   <tr key={i} className="hover:bg-slate-50">
-                    <td className="px-4 py-2 text-slate-400 font-mono text-xs">{i + 1}.</td>
-                    <td className="px-4 py-2 font-medium text-slate-700">{history[i * 2]}</td>
-                    <td className="px-4 py-2 font-medium text-slate-700">{history[i * 2 + 1] || ''}</td>
+                    <td className="px-3 py-2 font-mono text-xs text-slate-400 sm:px-4">{i + 1}.</td>
+                    <td className="break-words px-3 py-2 font-medium text-slate-700 sm:px-4">{history[i * 2]}</td>
+                    <td className="break-words px-3 py-2 font-medium text-slate-700 sm:px-4">{history[i * 2 + 1] || ''}</td>
                   </tr>
                 ))}
               </tbody>
@@ -126,21 +126,21 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ gameState, onCopy, copiedT
       </div>
 
       {/* FEN Display */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-3">
-        <div className="flex justify-between items-center mb-2">
+      <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-xs font-bold text-slate-500 uppercase">FEN corrente</h3>
           <CopyButton text={fen} type="FEN" label="Copia" />
         </div>
-        <div className="bg-slate-100 p-2 rounded text-xs font-mono text-slate-600 break-all border border-slate-200 select-all">
+        <div className="select-all break-all rounded border border-slate-200 bg-slate-100 p-2 font-mono text-xs text-slate-600">
           {fen}
         </div>
       </div>
 
       {/* FEN Import */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-3">
+      <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
         <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Importa FEN</h3>
         <textarea 
-          className="w-full p-2 text-xs font-mono border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none mb-2"
+          className="mb-2 w-full min-w-0 resize-none rounded border border-slate-300 p-2 font-mono text-xs outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           rows={2}
           placeholder="Incolla qui una stringa FEN..."
           value={importFen}
@@ -158,17 +158,17 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ gameState, onCopy, copiedT
         <button 
           onClick={handleFenSubmit}
           disabled={!importFen.trim()}
-          className="w-full py-1.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white text-sm font-semibold rounded transition-colors flex items-center justify-center gap-2"
+          className="flex min-h-10 w-full items-center justify-center gap-2 rounded bg-blue-600 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           <ArrowDownToLine size={16} />
           Applica FEN
         </button>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-3">
+      <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
         <button
           onClick={downloadGame}
-          className="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold rounded transition-colors flex items-center justify-center gap-2"
+          className="flex min-h-10 w-full items-center justify-center gap-2 rounded bg-slate-800 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
         >
           <Download size={16} />
           Scarica partita .txt
@@ -180,7 +180,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ gameState, onCopy, copiedT
         href="https://paypal.me/uraroga"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full py-3 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm group"
+        className="group flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-3 text-center text-sm font-bold text-amber-800 shadow-sm transition-colors hover:bg-amber-100"
       >
         <Coffee size={18} className="text-amber-600 group-hover:scale-110 transition-transform" />
         Offri un caffè a uraroga
