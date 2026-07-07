@@ -12,14 +12,6 @@ https://uraroga.github.io/easy-chess-room/
 
 Questo è il link della versione pubblicata con GitHub Pages. Da telefono o computer, usa questo indirizzo per provare il gioco nel browser.
 
-Il repository GitHub contiene invece il codice sorgente del progetto:
-
-```text
-https://github.com/Uraroga/easy-chess-room
-```
-
-Il repository serve per scaricare, studiare, modificare o contribuire al codice.
-
 Questa versione è pensata per principianti, gioco locale nel browser, aiuto mosse e modalità stanza peer-to-peer. Il vecchio progetto `React-Offline-Chess-v1.6` rimane separato e non deve essere modificato da questa repository.
 
 La modalità locale funziona senza database, login o account utente. La partita viene gestita nel browser e le regole degli scacchi sono validate da `chess.js`. La modalità stanza peer-to-peer è sperimentale, usa Trystero e WebRTC, e sincronizza la posizione tramite FEN.
