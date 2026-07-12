@@ -177,7 +177,7 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({ game, fen, onMove, lastM
                 {/* The Piece */}
                 {piece && (
                   <div
-                    className={`w-[85%] h-[85%] transition-transform 
+                    className={`w-[90%] h-[90%] transition-transform 
                       ${draggedSquare === square ? 'opacity-0' : 'opacity-100'} 
                       ${!isGameOver && canMove && piece.color === game.turn() ? 'cursor-grab active:cursor-grabbing hover:scale-105' : ''}
                     `}

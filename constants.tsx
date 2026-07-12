@@ -1,112 +1,117 @@
 import React from 'react';
 
+type PieceTone = 'white' | 'black';
+
+const PIECE_VIEW_BOX = '0 0 48 48';
+const PIECE_STROKE_WIDTH = 3.2;
+
+const PIECE_COLORS: Record<PieceTone, { fill: string; stroke: string }> = {
+  white: {
+    fill: '#fff7df',
+    stroke: '#263241',
+  },
+  black: {
+    fill: '#172033',
+    stroke: '#f7f0da',
+  },
+};
+
+interface PieceSvgProps {
+  tone: PieceTone;
+  children: React.ReactNode;
+}
+
+const PieceSvg: React.FC<PieceSvgProps> = ({ tone, children }) => {
+  const colors = PIECE_COLORS[tone];
+
+  return (
+    <svg
+      viewBox={PIECE_VIEW_BOX}
+      className="h-full w-full"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g
+        fill={colors.fill}
+        stroke={colors.stroke}
+        strokeWidth={PIECE_STROKE_WIDTH}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {children}
+      </g>
+    </svg>
+  );
+};
+
+const Pawn: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <circle cx="24" cy="13.5" r="6.4" />
+    <path d="M15.5 36.5C16.4 28.4 19.4 23 24 23s7.6 5.4 8.5 13.5z" />
+    <rect x="10" y="36" width="28" height="6" rx="3" />
+  </PieceSvg>
+);
+
+const Knight: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <path d="M12 41h27c-.3-8.7-2.2-14.7-7.9-19.1l.3-8.3-5.3 4.2-5.8-6.8-1.3 9.2c-4.8 2.4-7.2 6-7.2 10.2 0 3.8 2.2 6.1 6.1 7.4z" />
+    <path d="M18.7 29.2c3.9.7 7.4-.4 10.4-3.2" fill="none" />
+    <path d="M30.8 21.8c3 1.7 4.9 4.1 5.8 7.2" fill="none" />
+    <circle cx="26.6" cy="20.7" r="1" fill={PIECE_COLORS[tone].stroke} stroke="none" />
+  </PieceSvg>
+);
+
+const Bishop: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <path d="M24 6.5C17.8 11 14.7 16.3 14.7 22.3c0 5.1 2.3 8.8 6.3 10.2h6c4-1.4 6.3-5.1 6.3-10.2 0-6-3.1-11.3-9.3-15.8z" />
+    <path d="M28.5 14.7 19.4 27" fill="none" />
+    <path d="M17.5 33.5h13" fill="none" />
+    <rect x="12" y="36" width="24" height="6" rx="3" />
+  </PieceSvg>
+);
+
+const Rook: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <path d="M10.5 9.5h7v5h4.2v-5h4.6v5h4.2v-5h7v10h-27z" />
+    <path d="M14 19.5h20v16.8H14z" />
+    <path d="M17 26h14" fill="none" />
+    <rect x="10" y="36" width="28" height="6" rx="3" />
+  </PieceSvg>
+);
+
+const Queen: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <path d="M9.5 29.5 12 12.8l7.5 10.5L24 8l4.5 15.3L36 12.8l2.5 16.7z" />
+    <circle cx="12" cy="12.8" r="2.8" />
+    <circle cx="24" cy="8" r="2.8" />
+    <circle cx="36" cy="12.8" r="2.8" />
+    <path d="M12.5 30.5h23" fill="none" />
+    <rect x="12" y="35.5" width="24" height="6.5" rx="3.25" />
+  </PieceSvg>
+);
+
+const King: React.FC<{ tone: PieceTone }> = ({ tone }) => (
+  <PieceSvg tone={tone}>
+    <path d="M24 7v11" fill="none" />
+    <path d="M19.5 11.5h9" fill="none" />
+    <path d="M12 30.2c1.5-7.7 5.4-11.7 12-11.7s10.5 4 12 11.7z" />
+    <path d="M15 30.5h18" fill="none" />
+    <rect x="12" y="35.5" width="24" height="6.5" rx="3.25" />
+  </PieceSvg>
+);
+
 // Piece SVGs
 export const PIECE_SVGS: Record<string, React.ReactNode> = {
-  wP: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <path d="M22.5 9c-2.21 0-4 1.79-4 4 0 .89.29 1.71.78 2.38C17.33 16.5 16 18.59 16 21c0 2.03.94 3.84 2.41 5.03-3 1.06-7.41 5.55-7.41 13.47h23c0-7.92-4.41-12.41-7.41-13.47 1.47-1.19 2.41-3 2.41-5.03 0-2.41-1.33-4.5-3.28-5.62.49-.67.78-1.49.78-2.38 0-2.21-1.79-4-4-4z" fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-  wN: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <path d="M22 10c10.5 1 16.5 8 16 29H15c0-9 10-6.5 8-21" fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M24 18c.38 2.32-2.41 5.13-4.5 6-1.55.66-2.67.55-3.79-.19-1.29-.85-2.21-2.22-1.71-3.81.44-1.41 1.77-2.73 3.65-3.32 1.34-.41 3.51-.43 4.85.32 1.5 1 1.5 1 1.5 1z" fill="#000" />
-    </svg>
-  ),
-  wB: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 36c3.39-.47 5.5-1.06 9.5-2v22h8v-22c4 1 6.5 1.5 9.5 2V5H9v31z" transform="translate(0, -5)" />
-        <path d="M22.5 10.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z" transform="translate(0, -5)" />
-        <path d="M15 32c2.5 2.5 12.5 2.5 15 0 .5-1.5 0-2 0-2 0-2.5-15-2.5-15 0 0 0-.5.5 0 2z" transform="translate(0, -5)" />
-        <path d="M25 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 1 1 5 0z" fill="#fff" stroke="#000" transform="translate(0, -5)" />
-      </g>
-      <path d="M17.5 26h10M15 30h15m-7.5-14.5v5M20 18h5" stroke="#000" strokeLinejoin="round" strokeLinecap="round" />
-    </svg>
-  ),
-  wR: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 39h27v-3H9v3zM12 36v-4h21v4H12zM11 14V9h4v2h5V9h5v2h5V9h4v5" strokeLinecap="butt" />
-        <path d="M34 14l-3 3H14l-3-3" />
-        <path d="M31 17v12.5c0 2.5-2.5 2.5-2.5 2.5h-12c0 0-2.5 0-2.5-2.5V17" />
-        <path d="M31 29.5l1.5 2.5h-20l1.5-2.5" />
-        <path d="M11 14h23" fill="none" stroke="#000" strokeLinejoin="miter" />
-      </g>
-    </svg>
-  ),
-  wQ: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM24.5 7.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM41 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM10.5 20.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM38.5 20.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0z" />
-        <path d="M9 26c8.5-1.5 21-1.5 27 0l2-12-7 11V11l-5.5 13.5-5.5-13.5V25l-7-11z" strokeLinecap="butt" />
-        <path d="M9 26c0 2 1.5 2 2.5 4 1 2.5 1 2.5 1 2.5s8 1 10 1 10-1 10-1 0 0 0 0 1-2.5 2.5-2 2.5-4z" />
-        <path d="M9 26c0-1.5 1.5-2 2.5-2s2.5.5 4.5 1.5 4.5 1.5 6.5 1.5 4.5-.5 6.5-1.5 3.5-1.5 4.5-1.5 2.5.5 2.5 2" fill="none" />
-        <path d="M11.5 30c3.5-1 18.5-1 22 0M12 33.5c6-1 15-1 21 0" fill="none" />
-      </g>
-    </svg>
-  ),
-  wK: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.5 11.63V6M20 8h5" strokeLinejoin="miter" />
-        <path d="M22.5 25s4.5-7.5 3-10.5c0 0-1-2.5-3-2.5s-3 2.5-3 2.5c-1.5 3 3 10.5 3 10.5" />
-        <path d="M11.5 37c5.5 3.5 15.5 3.5 21 0v-7s9-4.5 6-10.5c-4-1-5 2-8 2s-4-4-8-4-5 3-8 4-5-2-8-2-4 9.5 6 10.5z" />
-        <path d="M11.5 30c5.5-3 15.5-3 21 0m-21 3.5c5.5-3 15.5-3 21 0m-21 3.5c5.5-3 15.5-3 21 0" fill="none" />
-      </g>
-    </svg>
-  ),
-  bP: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <path d="M22.5 9c-2.21 0-4 1.79-4 4 0 .89.29 1.71.78 2.38C17.33 16.5 16 18.59 16 21c0 2.03.94 3.84 2.41 5.03-3 1.06-7.41 5.55-7.41 13.47h23c0-7.92-4.41-12.41-7.41-13.47 1.47-1.19 2.41-3 2.41-5.03 0-2.41-1.33-4.5-3.28-5.62.49-.67.78-1.49.78-2.38 0-2.21-1.79-4-4-4z" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-  bN: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <path d="M22 10c10.5 1 16.5 8 16 29H15c0-9 10-6.5 8-21" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M24 18c.38 2.32-2.41 5.13-4.5 6-1.55.66-2.67.55-3.79-.19-1.29-.85-2.21-2.22-1.71-3.81.44-1.41 1.77-2.73 3.65-3.32 1.34-.41 3.51-.43 4.85.32 1.5 1 1.5 1 1.5 1z" fill="#fff" />
-    </svg>
-  ),
-  bB: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 36c3.39-.47 5.5-1.06 9.5-2v22h8v-22c4 1 6.5 1.5 9.5 2V5H9v31z" transform="translate(0, -5)" />
-        <path d="M22.5 10.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z" transform="translate(0, -5)" />
-        <path d="M15 32c2.5 2.5 12.5 2.5 15 0 .5-1.5 0-2 0-2 0-2.5-15-2.5-15 0 0 0-.5.5 0 2z" transform="translate(0, -5)" />
-        <path d="M25 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 1 1 5 0z" fill="#000" stroke="#fff" transform="translate(0, -5)" />
-      </g>
-    </svg>
-  ),
-  bR: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 39h27v-3H9v3zM12 36v-4h21v4H12zM11 14V9h4v2h5V9h5v2h5V9h4v5" strokeLinecap="butt" />
-        <path d="M34 14l-3 3H14l-3-3" />
-        <path d="M31 17v12.5c0 2.5-2.5 2.5-2.5 2.5h-12c0 0-2.5 0-2.5-2.5V17" />
-        <path d="M31 29.5l1.5 2.5h-20l1.5-2.5" />
-        <path d="M11 14h23" fill="none" stroke="#fff" strokeLinejoin="miter" />
-      </g>
-    </svg>
-  ),
-  bQ: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM24.5 7.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM41 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM10.5 20.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0zM38.5 20.5a2 2 0 1 1-4 0 2 2 0 1 1 4 0z" />
-        <path d="M9 26c8.5-1.5 21-1.5 27 0l2-12-7 11V11l-5.5 13.5-5.5-13.5V25l-7-11z" strokeLinecap="butt" />
-        <path d="M9 26c0 2 1.5 2 2.5 4 1 2.5 1 2.5 1 2.5s8 1 10 1 10-1 10-1 0 0 0 0 1-2.5 2.5-2 2.5-4z" />
-        <path d="M9 26c0-1.5 1.5-2 2.5-2s2.5.5 4.5 1.5 4.5 1.5 6.5 1.5 4.5-.5 6.5-1.5 3.5-1.5 4.5-1.5 2.5.5 2.5 2" fill="none" />
-        <path d="M11.5 30c3.5-1 18.5-1 22 0M12 33.5c6-1 15-1 21 0" fill="none" />
-      </g>
-    </svg>
-  ),
-  bK: (
-    <svg viewBox="0 0 45 45" className="w-full h-full">
-      <g fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.5 11.63V6M20 8h5" strokeLinejoin="miter" />
-        <path d="M22.5 25s4.5-7.5 3-10.5c0 0-1-2.5-3-2.5s-3 2.5-3 2.5c-1.5 3 3 10.5 3 10.5" />
-        <path d="M11.5 37c5.5 3.5 15.5 3.5 21 0v-7s9-4.5 6-10.5c-4-1-5 2-8 2s-4-4-8-4-5 3-8 4-5-2-8-2-4 9.5 6 10.5z" />
-        <path d="M11.5 30c5.5-3 15.5-3 21 0m-21 3.5c5.5-3 15.5-3 21 0m-21 3.5c5.5-3 15.5-3 21 0" fill="none" />
-      </g>
-    </svg>
-  ),
+  wP: <Pawn tone="white" />,
+  wN: <Knight tone="white" />,
+  wB: <Bishop tone="white" />,
+  wR: <Rook tone="white" />,
+  wQ: <Queen tone="white" />,
+  wK: <King tone="white" />,
+  bP: <Pawn tone="black" />,
+  bN: <Knight tone="black" />,
+  bB: <Bishop tone="black" />,
+  bR: <Rook tone="black" />,
+  bQ: <Queen tone="black" />,
+  bK: <King tone="black" />,
 };
